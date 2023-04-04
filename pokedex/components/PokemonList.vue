@@ -1,8 +1,7 @@
 <template>
-  <div class="component flex justify-content-center flex-wrap">
-    <!--        <Button @click="refreshAll">ADD</Button>-->
-    <div class="card lg:w-7">
-      <DataTable v-if="!pending2" v-model:filters="filters" :value="pokemons2" scrollable scrollHeight="550px"
+  <div class="component flex justify-content-center flex-wrap main-div-list">
+    <div class="card md:w-8 lg:w-7 h-max">
+      <DataTable v-if="!pending" v-model:filters="filters" :value="pokemons" scrollable scrollHeight="flex"
                  tableStyle="" class="pokedex-list w-12"
                  :rowClass="()=> 'h-4rem'">
         <template #header>
@@ -22,8 +21,8 @@
         <Column field="name" header="Name" class="pokemon-name"></Column>
         <Column header="" class="w-4rem">
           <template #body="slotProps">
-            <NuxtLink to="/Details" class="info-button">
-            <Button icon="pi pi-info-circle"  rounded @click="openDetails(slotProps.data)"></Button>
+            <NuxtLink :to="`/Details/${slotProps.data.id}`" class="info-button">
+              <Button icon="pi pi-info-circle" rounded @click="openDetails(slotProps.data)"></Button>
             </NuxtLink>
           </template>
         </Column>
@@ -40,59 +39,51 @@
 </template>
 
 <script lang="ts" setup>
-import {refreshNuxtData, useFetch} from "#app";
+import {useFetch} from "#app";
 import {ref} from "vue";
 import {FilterMatchMode} from "primevue/api";
-import {usePokemonDetailStore, useTeam} from "~/composables/states";
-import {usePinia} from "#imports";
+import {usePokemonDetailStore, usePokemonListStore, usePokemonTeamStore} from "~/composables/states";
 
-const team = useTeam();
-/* Permet de forcer le rafraichissement des données */
-const refreshing = ref(false)
-const pinia = usePinia();
-const refreshAll = () => {
-  console.log('REFRESH ALL');
-  refreshing.value = true
-  try {
-    /* Force le rafraichissement des données avec un wipe des caches */
-    refreshNuxtData('pokemons2')
-  } finally {
-    refreshing.value = false
+const pending = ref(true);
+/* La liste de pokémons à afficher dans le Datatable */
+let pokemons: any[];
+
+/* Fonction qui ajoute un pokémon à l'équipe. Si l'équipe contient déjà 6 pokémons, on ne peut plus en ajouter */
+const addTeam = (pokemon: any) => {
+  if (usePokemonTeamStore().team.length < 6) {
+    usePokemonTeamStore().team.push(pokemon);
   }
 }
-
-const addTeam = (pokemon: any) => {
-  console.log('AJOUT', pokemon);
-  team.value.push(pokemon);
-  console.log('team', team.value);
-}
-
+/* Fonction qui va permettre d'enregistrer les données du pokémon que l'on veut consulter en détail dans le store */
 const openDetails = (pokemon: any) => {
-  console.log('openDetails', pokemon);
-  usePokemonDetailStore().informations = ref(pokemon);
-  console.log('usePokemonDetailStore', usePokemonDetailStore().informations, usePokemonDetailStore().informations.value);
+  usePokemonDetailStore().details = ref(pokemon);
 }
-
+/* Filtre de la Datatable */
 const filters = ref({
   global: {value: null, matchMode: FilterMatchMode.CONTAINS},
 });
 
-const pending2 = ref(true);
-
-let pokemons2: any[];
-useFetch('https://pokeapi.co/api/v2/pokemon/?limit=100&offset=0').then((pokelist: any) => {
-  console.log('pokelist', pokelist, pokelist.data._rawValue);
-  let promises: any[] = [];
-  pokelist.data._rawValue.results.forEach((pokemon: any) => {
-    promises.push($fetch('https://pokeapi.co/api/v2/pokemon/' + pokemon.name));
-    // promises.push(useFetch('https://pokeapi.co/api/v2/pokemon/' + pokemon.name, {pick: ['name', 'sprites']}));
-  });
-  Promise.all(promises).then((result_promises: any) => {
-    console.log('result_promises', result_promises);
-    pokemons2 = result_promises;
-    pending2.value = false;
-  });
-})
+if (usePokemonListStore().list == null || usePokemonListStore().list == undefined) {
+  /* On récupère la liste des 151 premiers pokémons via l'api REST */
+  useFetch('https://pokeapi.co/api/v2/pokemon/?limit=151&offset=0').then((pokemon_list: any) => {
+    let promises: any[] = [];
+    pokemon_list.data._rawValue.results.forEach((pokemon_data: any) => {
+      /* On prépare une serie de fetch pour récupérer les données complètes des pokémons */
+      promises.push($fetch('https://pokeapi.co/api/v2/pokemon/' + pokemon_data.name));
+    });
+    /* On récupère toutes les données complètes des pokémons en un tableau que l'on transmet à la Datatable */
+    Promise.all(promises).then((result_promises: any) => {
+      pokemons = result_promises;
+      pending.value = false;
+      /* On enregistre la liste de pokémon dans le store pour ne pas avoir à refaire d'appel http par la suite */
+      usePokemonListStore().list = ref(result_promises);
+    });
+  })
+} else {
+  /* On récupère la liste des pokémons dans le store pour éviter de refaire des appels http inutiles */
+  pokemons = usePokemonListStore().list;
+  pending.value = false;
+}
 
 </script>
 

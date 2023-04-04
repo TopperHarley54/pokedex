@@ -1,0 +1,93 @@
+$red-color-1: rgba(231, 55, 0, 1);
+$red-color-2: rgba(238, 83, 36, 1);
+
+.main-div-detail.component {
+  //max-height: 550px;
+  height: calc(100vh - 80px);
+}
+
+.pokemon-sprite {
+
+  background: linear-gradient(180deg, rgba(0, 161, 147, 1) 0%, rgba(8, 233, 217, 1) 45%, rgba(36, 238, 224, 1) 70%, rgba(0, 194, 177, 1) 100%);
+  box-shadow: 0 3px 3px -2px rgb(0 0 0 / 75%);
+
+  &.fire {
+    //background: linear-gradient(180deg, $red-color-1 0%, $red-color-2 70%, rgba(231, 55, 0, 0.9) 100%);
+    background: linear-gradient(180deg, rgba(255, 55, 0, 1) 0%, rgba(190, 73, 38, 1) 45%, rgba(238, 83, 36, 1) 70%, rgba(255, 55, 0, 1) 100%);
+  }
+
+  &.water {
+    background: linear-gradient(180deg, rgba(0, 146, 194, 1) 0%, rgba(8, 192, 233, 1) 45%, rgba(36, 188, 238, 1) 70%, rgba(0, 146, 194, 1) 100%);
+  }
+
+  &.grass {
+    background: linear-gradient(180deg, rgba(0, 194, 83, 1) 0%, rgba(8, 233, 126, 1) 45%, rgba(36, 238, 139, 1) 70%, rgba(0, 194, 83, 1) 100%);
+  }
+
+  &.rock {
+    background: linear-gradient(180deg, rgba(0, 120, 124, 1) 0%, rgba(5, 156, 148, 1) 45%, rgba(24, 153, 146, 1) 70%, rgba(0, 124, 115, 1) 100%);
+  }
+
+  &.electric {
+    background: linear-gradient(180deg, rgba(149, 194, 0, 1) 0%, rgba(181, 233, 8, 1) 45%, rgba(205, 238, 36, 1) 70%, rgba(149, 194, 0, 1) 100%);
+  }
+
+  &.ghost {
+    background: linear-gradient(180deg, rgba(48, 0, 124, 1) 0%, rgba(64, 5, 156, 1) 45%, rgba(73, 24, 153, 1) 70%, rgba(48, 0, 124, 1) 100%);
+  }
+
+
+  //height: calc(50% - 80px);
+  height: 35%;
+  width: 100%;
+  border-bottom: 3px black solid;
+
+  & > img {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translateX(-50%) translateY(-50%);
+    //width: 350px;
+    background: white;
+    border: 3px black solid;
+    border-radius: 50%;
+    box-shadow: 0 4px 2px 1px rgb(0 0 0 / 75%);
+  }
+
+}
+
+.pokemon-data {
+  //position: absolute;
+  //display: block;
+  height: 50%;
+  width: 100%;
+  margin-top: 4rem;
+
+  .pokemon-caracteritics {
+    ul {
+      padding: 0;
+    }
+
+    & .data:first-letter, .data > li:first-letter {
+      text-transform: uppercase;
+    }
+
+
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .component {
+    //padding: 0;
+    //height: 70vh;
+    //padding: 1rem 1rem;
+    //display: block !important;
+
+  }
+  .card {
+    min-width: 100% !important;
+  }
+}
+
+
+

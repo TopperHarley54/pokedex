@@ -1,0 +1,51 @@
+$red-color-1: rgba(231, 55, 0, 1);
+$red-color-2: rgba(238, 83, 36, 1);
+
+.header {
+  background: linear-gradient(180deg, $red-color-1 0%, $red-color-2 70%, rgba(231, 55, 0, 0.9) 100%);
+  z-index: 999;
+
+  height: 80px;
+  width: 100%;
+  position: relative;
+
+  .main-logo {
+    width: 150px;
+  }
+
+  //@media screen and (min-width: 576px) {
+    & > img {
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+  //}
+
+  & > img {
+    position: absolute;
+    top: 50%;
+  }
+
+  .navigation-back-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1%;
+  }
+
+  .team {
+    position: absolute;
+    right: 1%;
+    top: 50%;
+    transform: translateY(-50%);
+    //background-color: white;
+    &-button {
+      background-color: white;
+      max-width: 66px;
+      overflow: hidden;
+
+      & > img {
+        margin: 0 -7px;
+      }
+    }
+  }
+}

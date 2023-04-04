@@ -1,11 +1,9 @@
 <template>
   <NuxtLayout :name="'default'"></NuxtLayout>
+  <PokemonDetail/>
 </template>
 
 <script>
-export default {
-  name: "Details"
-}
 </script>
 
 <style scoped>

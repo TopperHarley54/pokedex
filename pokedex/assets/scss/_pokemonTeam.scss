@@ -1,0 +1,24 @@
+.background {
+  width: 100%;
+  position: absolute;
+  //height: calc(100% - 80px);
+  height: 100%;
+  //top: 80px;
+  background: rgb(50 50 50 / 60%);
+  z-index: 998;
+}
+
+.modal {
+  //position: absolute;
+  //z-index: 999;
+  //top: 20%;
+  //left: 50%;
+  //transform: translateX(-50%);
+
+  &.card {
+    .p-datatable .p-datatable-tbody > tr > td {
+      padding: 0rem 1rem;
+    }
+  }
+
+}

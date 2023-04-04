@@ -1,0 +1,48 @@
+.component.main-div-list {
+  //height: 82vh;
+  //height: calc(90% - 80px - 2rem);
+
+  .card {
+    height: 80vh !important;
+
+    & .pokedex-list {
+      padding: 0 2rem;
+    }
+
+    .info-button {
+      text-decoration: none;
+    }
+  }
+
+
+  .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0 1rem;
+  }
+
+  @media screen and (max-width: 576px) {
+    .component {
+      //padding: 0;
+      height: 70vh;
+      padding: 1rem 1rem;
+      display: block !important;
+    }
+
+    .header {
+      & > img {
+        left: 5%;
+        transform: translateX(-5%) translateY(-50%);
+      }
+    }
+
+
+    .card {
+      //padding: 0;
+
+      & .pokedex-list {
+        padding: 0;
+      }
+    }
+
+  }
+
+}

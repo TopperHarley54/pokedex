@@ -5,9 +5,7 @@
       <Button icon="pi pi-chevron-left" @click="backward()" text rounded class="navigation-back-button"></Button>
       <img src="/svg/logo.svg" class="main-logo"/>
       <div class="team">
-        <Button class="team-button" text raised rounded>
-          <img src="/img/pokeballs-48.png"/>
-        </Button>
+        <PokemonTeam />
 
       </div>
     </div>
@@ -21,6 +19,8 @@
 </template>
 
 <script setup>
+
+import PokemonTeam from "../components/PokemonTeam";
 
 const router = useRouter();
 // router.back();
