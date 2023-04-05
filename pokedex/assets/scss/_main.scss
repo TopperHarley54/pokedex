@@ -77,4 +77,21 @@ body {
   box-shadow: 0 3px 4px -2px rgba(0, 0, 0, 0.75)
 }
 
+@media screen and (max-width: 576px) {
+  .component {
+    padding: 0;
+
+    &:not(.main-div-detail) {
+      .card {
+        padding: 0;
+      }
+    }
+
+    .card {
+      margin-bottom: 0;
+    }
+
+  }
+}
+
 

@@ -7,6 +7,9 @@ import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';   // optional
 import Row from 'primevue/row';
 import Divider from "primevue/divider";
+import Toast from 'primevue/toast';
+import ToastService from 'primevue/toastservice';
+
 // optional
 
 
@@ -19,5 +22,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component("ColumnGroup", ColumnGroup);
     nuxtApp.vueApp.component("Row", Row);
     nuxtApp.vueApp.component("Divider", Divider);
+    nuxtApp.vueApp.component("Toast", Toast);
+    nuxtApp.vueApp.use(ToastService);
     //other components that you need
 });

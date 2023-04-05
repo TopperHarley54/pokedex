@@ -15,7 +15,7 @@
         <Column field="sprite" header="Image" class="w-10rem ">
           <template #body="slotProps">
             <img :src="`${slotProps.data.sprites.front_default}`" :alt="slotProps.data.sprites.front_default"
-                 class="sm:w-3rem md:w-4rem lg:w-6rem"/>
+                 class="w-8 sm:w-3rem md:w-4rem lg:w-6rem"/>
           </template>
         </Column>
         <Column field="name" header="Name" class="pokemon-name"></Column>
@@ -33,7 +33,7 @@
         </Column>
       </DataTable>
     </div>
-
+    <Toast position="bottom-right"/>
 
   </div>
 </template>
@@ -43,6 +43,13 @@ import {useFetch} from "#app";
 import {ref} from "vue";
 import {FilterMatchMode} from "primevue/api";
 import {usePokemonDetailStore, usePokemonListStore, usePokemonTeamStore} from "~/composables/states";
+import {useToast} from "primevue/usetoast";
+
+const toast = useToast();
+
+const displayMessage = () => {
+  toast.add({severity: 'info', summary: 'Info', detail: 'Votre équipe est déjà composée de 6 pokémons', life: 3000});
+};
 
 const pending = ref(true);
 /* La liste de pokémons à afficher dans le Datatable */
@@ -52,6 +59,8 @@ let pokemons: any[];
 const addTeam = (pokemon: any) => {
   if (usePokemonTeamStore().team.length < 6) {
     usePokemonTeamStore().team.push(pokemon);
+  } else {
+    displayMessage();
   }
 }
 /* Fonction qui va permettre d'enregistrer les données du pokémon que l'on veut consulter en détail dans le store */
