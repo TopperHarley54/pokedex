@@ -1,8 +1,5 @@
-$red-color-1: rgba(231, 55, 0, 1);
-$red-color-2: rgba(238, 83, 36, 1);
 
 .main-div-detail.component {
-  //max-height: 550px;
   height: calc(100vh - 80px);
 }
 
@@ -12,7 +9,6 @@ $red-color-2: rgba(238, 83, 36, 1);
   box-shadow: 0 3px 3px -2px rgb(0 0 0 / 75%);
 
   &.fire {
-    //background: linear-gradient(180deg, $red-color-1 0%, $red-color-2 70%, rgba(231, 55, 0, 0.9) 100%);
     background: linear-gradient(180deg, rgba(255, 55, 0, 1) 0%, rgba(190, 73, 38, 1) 45%, rgba(238, 83, 36, 1) 70%, rgba(255, 55, 0, 1) 100%);
   }
 
@@ -36,8 +32,6 @@ $red-color-2: rgba(238, 83, 36, 1);
     background: linear-gradient(180deg, rgba(48, 0, 124, 1) 0%, rgba(64, 5, 156, 1) 45%, rgba(73, 24, 153, 1) 70%, rgba(48, 0, 124, 1) 100%);
   }
 
-
-  //height: calc(50% - 80px);
   height: 35%;
   width: 100%;
   border-bottom: 3px black solid;
@@ -47,7 +41,6 @@ $red-color-2: rgba(238, 83, 36, 1);
     left: 50%;
     top: 40%;
     transform: translateX(-50%) translateY(-50%);
-    //width: 350px;
     background: white;
     border: 3px black solid;
     border-radius: 50%;
@@ -57,8 +50,6 @@ $red-color-2: rgba(238, 83, 36, 1);
 }
 
 .pokemon-data {
-  //position: absolute;
-  //display: block;
   height: 50%;
   width: 100%;
   margin-top: 4rem;
@@ -77,13 +68,6 @@ $red-color-2: rgba(238, 83, 36, 1);
 }
 
 @media screen and (max-width: 576px) {
-  .component {
-    //padding: 0;
-    //height: 70vh;
-    //padding: 1rem 1rem;
-    //display: block !important;
-
-  }
   .card {
     min-width: 100% !important;
   }

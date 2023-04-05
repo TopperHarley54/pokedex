@@ -75,7 +75,6 @@ const removePokemonFromTeam = (pokemon: any) => {
 .modal {
   position: absolute;
   z-index: 999;
-  /*top: 20%;*/
   left: 50%;
   transform: translateX(-50%);
 }

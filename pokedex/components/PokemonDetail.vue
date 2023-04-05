@@ -1,9 +1,7 @@
 <template>
 
   <div class="component flex justify-content-center flex-wrap main-div-detail">
-    <!--        <Button @click="refreshAll">ADD</Button>-->
     <div class="card sm:w-12 md:w-10 lg:w-7">
-      <!--      {{ pokemon }}-->
       <div v-if="!pending" class="grid h-full">
         <div v-if="pokemon" class="pokemon-sprite col-12 normal" :class="{ fire: is_type('fire', pokemon.types),
         water: is_type('water', pokemon.types), grass:is_type('grass', pokemon.types),
